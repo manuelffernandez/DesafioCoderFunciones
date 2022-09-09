@@ -1,30 +1,38 @@
+// Mejorar correctUserChoice()
+// solucionar problema stock
+
+
+
+
+
+
 const FRASE_BIENVENIDO = 'BIENVENIDO\n\nBienvenido al E-shop de café. Seleccione una opción.\n1.Ordenar pedido\n2.Salir';
 const FRASE_COMPRA = 'COMPRA\n\nQue producto desea:\n1. Café  $30\n2. Jugo  $25\n3. Medialuna  $15\n4. Sandwich  $35';
 const FRASE_MODIFICAR = 'MODIFICAR\n\nQue desea hacer:\n1.Seguir comprando\n2.Ir al carrito';
 const FRASE_CARRITO = 'CARRITO\n\nRevise la consola para ver su pedido. Que desea hacer:\n1.Finalzar compra\n2.Volver';
 
-let productDepot = {
-	1: {
+let store = [
+	{
 		name: 'Café',
 		price: 30,
-		stock: 0
+		stock: 10
 	},
-	2: {
+	{
 		name: 'Jugo',
 		price: 25,
-		stock: 0
+		stock: 10
 	},
-	3: {
+	{
 		name: 'Medialuna',
 		price: 15,
-		stock: 0
+		stock: 10
 	},
-	4: {
+	{
 		name: 'Sandwich',
 		price: 35,
-		stock: 0
+		stock: 10
 	}
-}
+]
 
 let cart = [];
 
@@ -68,7 +76,7 @@ function getOrderQuantity() {
 		amount = parseInt(prompt('COMPRA\n\nElija la cantidad:'));
 
 		if (typeof amount !== 'number') {
-			errMsg();
+			alertUser();
 			continue;
 		} else {
 			return amount;
@@ -76,12 +84,37 @@ function getOrderQuantity() {
 	}
 }
 
+function searchProductInCart(productName) {
+	return cart.find( product => product.name === productName);
+}
+
+function updateCartItems(product, quantity) {
+	let cartObject = searchProductInCart(product);
+
+	if(cartObject === undefined) {
+		cart.push({
+			name: product.name,
+			qty: quantity
+		});
+	} else {
+		product.qty += quantity;
+	}
+}
+
+function decrementStock(depotObject, stockToDecrement) {
+	depotObject.stock -= stockToDecrement;
+	console.log(depotObject);
+}
+
 //Pide producto y cantidad y muestra por consola
 function getOrder() {
-	let chosed = getUserChoice(FRASE_COMPRA, 4);
-	let cantidad = getOrderQuantity();
+	let chosenOption = getUserChoice(FRASE_COMPRA, 4);
+
+	let chosenDepotObject = store[chosenOption - 1];
+	let quantity = getOrderQuantity();
 	
-	incrementCart(chosed, cantidad);
+	updateCartItems(chosenDepotObject, quantity);
+	decrementStock(chosenDepotObject, quantity);
 
 	menu(correctUserChoice(getUserChoice(FRASE_MODIFICAR, 2), 2, 1));
 }
@@ -91,19 +124,15 @@ function showOrder() {
 
 	console.log('-'.repeat(40))
 	console.log('Tu pedido es:');
-	for(const [key, obj] of Object.entries(productDepot)) {
-		if(obj.stock !== 0) {
-			total += obj.stock * obj.price;
-			console.log(`${obj.stock} ${obj.name} subtotal: $${obj.stock * obj.price}`);
-		}
-	}
+
+	cart.forEach(product => {
+		let productPrice = store.find(element => element.name === product.name)['price'];
+		let subtotal = product.qty * productPrice;
+		total += subtotal
+		console.log(`${product.qty} ${product.name} subtotal: $${subtotal}`);
+	});
 	console.log('Total: $' + total);
 }
-
-function incrementCart(id, cantidad) {
-	productDepot[id]['stock'] += cantidad;
-}
-
 
 function menu(section) {
 	switch (section) {
@@ -127,4 +156,8 @@ function menu(section) {
 	}
 }
 
-menu(correctUserChoice(getUserChoice(FRASE_BIENVENIDO, 2), 2, 2));
+function init() {
+	menu(correctUserChoice(getUserChoice(FRASE_BIENVENIDO, 2), 2, 2));	
+}
+
+init();
