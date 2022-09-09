@@ -3,28 +3,30 @@ const FRASE_COMPRA = 'COMPRA\n\nQue producto desea:\n1. Café  $30\n2. Jugo  $25
 const FRASE_MODIFICAR = 'MODIFICAR\n\nQue desea hacer:\n1.Seguir comprando\n2.Ir al carrito';
 const FRASE_CARRITO = 'CARRITO\n\nRevise la consola para ver su pedido. Que desea hacer:\n1.Finalzar compra\n2.Volver';
 
-let cart = {
+let productDepot = {
 	1: {
 		name: 'Café',
 		price: 30,
-		quantity: 0
+		stock: 0
 	},
 	2: {
 		name: 'Jugo',
 		price: 25,
-		quantity: 0
+		stock: 0
 	},
 	3: {
 		name: 'Medialuna',
 		price: 15,
-		quantity: 0
+		stock: 0
 	},
 	4: {
 		name: 'Sandwich',
 		price: 35,
-		quantity: 0
+		stock: 0
 	}
 }
+
+let cart = [];
 
 function alertUser() {
 	alert('El valor ingresado no es correcto. Porfavor coloque el número correspondiente a la opción que desea.');
@@ -34,7 +36,7 @@ function alertUser() {
 function getUserChoice(frase, options) {
 	let desicion;
 
-	do {
+	while(true) {
 		desicion = parseFloat(prompt(frase));
 		if(typeof desicion !== 'number') {
 			alertUser();
@@ -47,10 +49,10 @@ function getUserChoice(frase, options) {
 			}
 		}
 		alertUser();
-	} while(true)
+	}
 }
 
-//Corrige el valor de getUserChoice() segun la seccion del menu en donde se encuentre
+//Corrige el valor de getUserChoice() segun la seccion del menu en donde se encuentre 
 function correctUserChoice(pointer, value, correction) {
 	if (pointer === value) {
 		pointer += correction;
@@ -59,7 +61,7 @@ function correctUserChoice(pointer, value, correction) {
 }
 
 //Verifica que se escriba un numero en el prompt de getOrder() y retorna la cantidad
-function getProductQuantity() {
+function getOrderQuantity() {
 	let amount;
 
 	while (true) {
@@ -76,10 +78,10 @@ function getProductQuantity() {
 
 //Pide producto y cantidad y muestra por consola
 function getOrder() {
-	let elegido = getUserChoice(FRASE_COMPRA, 4);
-	let cantidad = getProductQuantity();
+	let chosed = getUserChoice(FRASE_COMPRA, 4);
+	let cantidad = getOrderQuantity();
 	
-	incrementCart(elegido, cantidad);
+	incrementCart(chosed, cantidad);
 
 	menu(correctUserChoice(getUserChoice(FRASE_MODIFICAR, 2), 2, 1));
 }
@@ -89,17 +91,17 @@ function showOrder() {
 
 	console.log('-'.repeat(40))
 	console.log('Tu pedido es:');
-	for(const [key, obj] of Object.entries(cart)) {
-		if(obj.quantity !== 0) {
-			total += obj.quantity * obj.price;
-			console.log(`${obj.quantity} ${obj.name} subtotal: $${obj.quantity * obj.price}`);
+	for(const [key, obj] of Object.entries(productDepot)) {
+		if(obj.stock !== 0) {
+			total += obj.stock * obj.price;
+			console.log(`${obj.stock} ${obj.name} subtotal: $${obj.stock * obj.price}`);
 		}
 	}
 	console.log('Total: $' + total);
 }
 
 function incrementCart(id, cantidad) {
-	cart[id]['quantity'] += cantidad;
+	productDepot[id]['stock'] += cantidad;
 }
 
 
