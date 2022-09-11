@@ -126,10 +126,10 @@ function getOrder() {
 
 function showOrder() {
 	let total = 0;
+
+	console.log('-'.repeat(70));
 	console.log('Lo que queda en la tienda');
 	console.table(store);
-
-	console.log('-'.repeat(40))
 	console.log('Tu pedido es:');
 
 	cart.forEach(product => {
@@ -139,6 +139,7 @@ function showOrder() {
 		console.log(`${product.qty} ${product.name} subtotal: $${subtotal}`);
 	});
 	console.log('Total: $' + total);
+	console.log('-'.repeat(70));
 }
 
 function menu(section) {
