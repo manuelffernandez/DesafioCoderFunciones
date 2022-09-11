@@ -32,7 +32,7 @@ let store = [
 		price: 35,
 		stock: 10
 	}
-]
+];
 
 let cart = [];
 
@@ -84,43 +84,50 @@ function getOrderQuantity() {
 	}
 }
 
-function searchProductInCart(productName) {
+function findProductInCart(productName) {
 	return cart.find( product => product.name === productName);
 }
 
-function updateCartItems(product, quantity) {
-	let cartObject = searchProductInCart(product);
+function updateCartItems(product, quantity) { /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	let cartObject = findProductInCart(product);
 
+	product.stock -= quantity;
 	if(cartObject === undefined) {
 		cart.push({
 			name: product.name,
 			qty: quantity
 		});
 	} else {
-		product.qty += quantity;
+		cartObject.qty += quantity;
 	}
 }
 
-function decrementStock(depotObject, stockToDecrement) {
-	depotObject.stock -= stockToDecrement;
-	console.log(depotObject);
+function checkStock(product, stockToDecrement) { /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	if(product.stock < stockToDecrement) {
+		alert('No hay stock disponible.');
+		return false;
+	}
+	return true;
 }
 
 //Pide producto y cantidad y muestra por consola
 function getOrder() {
 	let chosenOption = getUserChoice(FRASE_COMPRA, 4);
 
-	let chosenDepotObject = store[chosenOption - 1];
+	let product = store[chosenOption - 1];
 	let quantity = getOrderQuantity();
 	
-	updateCartItems(chosenDepotObject, quantity);
-	decrementStock(chosenDepotObject, quantity);
+	if(checkStock(product, quantity)) {
+		updateCartItems(product, quantity);/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	}
 
 	menu(correctUserChoice(getUserChoice(FRASE_MODIFICAR, 2), 2, 1));
 }
 
 function showOrder() {
 	let total = 0;
+	console.log('Lo que queda en la tienda');
+	console.table(store);
 
 	console.log('-'.repeat(40))
 	console.log('Tu pedido es:');
@@ -128,7 +135,7 @@ function showOrder() {
 	cart.forEach(product => {
 		let productPrice = store.find(element => element.name === product.name)['price'];
 		let subtotal = product.qty * productPrice;
-		total += subtotal
+		total += subtotal;
 		console.log(`${product.qty} ${product.name} subtotal: $${subtotal}`);
 	});
 	console.log('Total: $' + total);
