@@ -1,5 +1,4 @@
-// Mejorar correctUserChoice()
-// solucionar problema stock
+// Mejorar menu
 
 
 
@@ -85,24 +84,25 @@ function getOrderQuantity() {
 }
 
 function findProductInCart(productName) {
-	return cart.find( product => product.name === productName);
+	return cart.find( item => item.name === productName);
 }
 
-function updateCartItems(product, quantity) { /////////////////////////////////////////////////////////////////////////////////////////////////////////
-	let cartObject = findProductInCart(product);
+function update(productFromStore, quantity) { 
+	let cartObject = findProductInCart(productFromStore);
 
-	product.stock -= quantity;
+	productFromStore.stock -= quantity;
+
 	if(cartObject === undefined) {
-		cart.push({
-			name: product.name,
+		cart = [...cart, {
+			name: productFromStore.name,
 			qty: quantity
-		});
+		}];
 	} else {
 		cartObject.qty += quantity;
 	}
 }
 
-function checkStock(product, stockToDecrement) { /////////////////////////////////////////////////////////////////////////////////////////////////////////
+function checkStock(product, stockToDecrement) { 
 	if(product.stock < stockToDecrement) {
 		alert('No hay stock disponible.');
 		return false;
@@ -118,7 +118,7 @@ function getOrder() {
 	let quantity = getOrderQuantity();
 	
 	if(checkStock(product, quantity)) {
-		updateCartItems(product, quantity);/////////////////////////////////////////////////////////////////////////////////////////////////////////
+		update(product, quantity);
 	}
 
 	menu(correctUserChoice(getUserChoice(FRASE_MODIFICAR, 2), 2, 1));
