@@ -1,4 +1,5 @@
 // Corregir Modificar y Comprar
+//Crear clase para los objetos de store
 
 
 
