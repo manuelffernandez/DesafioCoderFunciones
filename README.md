@@ -26,7 +26,12 @@ On the other hand, the improvments I make will be updated in this :page_facing_u
 ### So don't hesitate to read it :arrow_down: :arrow_down: :arrow_down:
 ## Chronoligcal improvments list :clipboard:
 ### Latest
-*11 of September 2022*
+*12 of September 2022*
+
+**a)** The old menu system, which worked with a "switch" statement, was improved for a more scalable array/object based system. The functions related with the "switch menu system" were also updated to work correctly.
+
+### Changes 2
+*9 of September 2022*
 
 **a)** The object {*`cart`*} was replaced by two arrays with new functionalities. 
 The first array, [*`store`*], fulfills the function of storing the products with properties related to it (*name*, *price* and *stock*).
@@ -36,4 +41,13 @@ The second one, [*`cart`*], saves the products that the user wants to buy.
 When the user saves the order, the program makes a check in the [*`store`*] list using the `checkStock()` function. This allows to save the order on [*`cart`*] in case there is stock available.
 
 **c)** Console output improvement. 
-The code that is responsible for display the results of the order on the console when the user enters the *cart* option was improvement, making it more readeble.
+The code that is responsible for display the results of the order on the console when the user enters to the *cart* option was improvement, making it more readeble.
+
+### Changes 1
+*3 of September 2022*
+
+**a)** Creating the menus logic. 
+The idea is create a function called `menu()` that works with a *switch* statement which checks the input and compares against the cases, so you can navigate trought the different options.
+
+**b)** Create a cart object.
+This object was created by the following structure [key, value] = [number, object]. Namely, the objects that correspond with the property values of the {*`cart`*} object, represents the products of the store. These objects also has properties (name, price and quantity) which are used to save the order and calculate the total.
