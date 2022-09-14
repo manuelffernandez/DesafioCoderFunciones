@@ -2,7 +2,9 @@
 //Crear clase para los objetos de store
 
 
-
+//===========================================//
+//============== VARS & CONSTS ==============//
+//===========================================//
 
 let executeProgram = true;
 
@@ -93,6 +95,14 @@ let eraseCartMenu = [
 let cart = [];
 
 
+
+
+
+//===============================================//
+//============== FUNCIONES SIMPLES ==============//
+//===============================================//
+
+//Devuelve el valor absoluto de un número ingresado como parámetro.
 function modulo(a) {
 	if(a < 0) {
 		return -a;
@@ -100,11 +110,58 @@ function modulo(a) {
 	return a
 }
 
+//Mensaje de alerta que se muestra en pantalla si se ingresa una opción no válida.
 function alertUser() {
 	alert('El valor ingresado no es correcto. Porfavor coloque el número correspondiente a la opción que desea.');
 }
 
-//Pide que ingrese una opcion y devuelve lo elegido. Se repite si la opcion no es valida.
+//Muestra por consola el array de store
+function showStoreStock() {
+	console.log('Lo que queda en la tienda:');
+	console.table(store);
+}
+
+//Muestra en pantalla los items que puede elegir el usuario dentro de un array.
+function showOptionsOfMenu(menuArray) {
+	let titlesArray = menuArray.map(elemento => elemento.input + '. ' + elemento.name);
+	let titles = titlesArray.join('\n');
+
+	return titles;
+}
+
+function findProductIn(arrayWhereSearch, productObjectInputNumber) {
+	return arrayWhereSearch.find( item => item.input === productObjectInputNumber);
+}
+
+function checkStock(productToCheck, stockToDecrement) { 
+	if(productToCheck.stock < stockToDecrement) {
+		alert(`No hay stock disponible. Puede agregar hasta ${productToCheck.stock} unidad/es más.`);
+		return false;
+	}
+	return true;
+}
+
+//Crea un producto en el cart
+function createProductInCart(productObject) {
+	cart = [...cart, {
+		name: productObject.name,
+		stock: 0,
+		input: productObject.input
+	}];
+}
+
+//Elimina productos del cart que tengan el atributo 'stock' con el value 0 
+function cleanCart() {
+	for(let item of cart) {
+		if (item.stock === 0) {
+			cart.splice(cart.indexOf(item), 1)
+		}
+	}
+}
+
+//Solicita un valor numerico al usuario para seleccionar un producto mostrado en pantalla por medio de showOptionsOfMenu().
+//Chequea que el valor ingresado sea válido, es decir que coincida con las opciones. En caso de que lo sea, retorna ese valor.
+//El parametro menuArray esta definido para ingresarlo en showOptionsOfMenu.
 function getUserChoice(frase, menuArray) {
 	let desicion;
 
@@ -120,10 +177,19 @@ function getUserChoice(frase, menuArray) {
 	}
 }
 
-//Verifica que se escriba un numero en el prompt de getOrder() y retorna la cantidad
-function getProductQuantity(frase, productFromStore, canReturnNegativeAmount = false) {
+
+
+//=================================================//
+//============== FUNCIONES COMPLEJAS ==============//
+//=================================================//
+
+
+//Solicita un numero al usuario para operar con el producto previamente elegido.
+//canReturnNegativeAmount dato booleano que permite el ingreso de valores negativos.
+//true: permite valores negativos & false: no permite valores negativos. Valor por defecto: false
+function getProductQuantity(frase, productObjectToDisplay, canReturnNegativeAmount = false) {
 	while (true) {
-		let amount = parseInt(prompt(frase + productFromStore.name));
+		let amount = parseInt(prompt(frase + productObjectToDisplay.name));
 		let isAmountNeg;
 
 		if(canReturnNegativeAmount) {
@@ -139,46 +205,22 @@ function getProductQuantity(frase, productFromStore, canReturnNegativeAmount = f
 	}
 }
 
-function findProductIn(arrayWhereSearch, productInputNumber) {
-	return arrayWhereSearch.find( item => item.input === productInputNumber);
-}
-
-function updateCartAndStore(productObjectToSearchInCart, quantity) { //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Mueve una cantidad especificada del store al carrito.
+//Suma quantity al la propiedad 'stock' del producto en cart y la resta en 'stock' del mismo producto en store
+//Para lograr la operacion inversa, es decir del carrito al store simplemente se ingresa un quantity negativo
+function moveProductQtyFromCartToStore(productObjectToSearchInCart, quantity) {
 	let cartObject = findProductIn(cart, productObjectToSearchInCart.input);
-	let storeObject = store.find(element => element.input == productObjectToSearchInCart.input);
+	let storeObject = findProductIn(store, productObjectToSearchInCart.input);
 
 	if(cartObject === undefined) {
-		cart = [...cart, {
-			name: productObjectToSearchInCart.name,
-			stock: quantity,
-			input: productObjectToSearchInCart.input
-		}];
+		createProductInCart(cartObject);
+		cartObject.stock += quantity;
 		storeObject.stock -= quantity;
 	} else {
 		cartObject.stock += quantity;
 		storeObject.stock.stock -= quantity;
 	}
-
-	for(let item of cart) {
-		if (item.stock === 0) {
-			cart.splice(cart.indexOf(item), 1)
-		}
-	}
-}
-
-function checkStock(productToCheck, stockToDecrement) { 
-	if(productToCheck.stock < stockToDecrement) {
-		alert(`No hay stock disponible. Puede agregar hasta ${productToCheck.stock} unidad/es más.`);
-		return false;
-	}
-	return true;
-}
-
-function showOptionsOfMenu(menuArray) {
-	let titlesArray = menuArray.map(elemento => elemento.input + '. ' + elemento.name);
-	let titles = titlesArray.join('\n');
-
-	return titles;
+	cleanCart();
 }
 
 function defineProductAndAmount(arrayWhereSearchProductObject, fraseChoice, fraseQuantity, arrayToShowAvailableProducts, canReceiveNegativeAmount) {
@@ -194,7 +236,7 @@ function defineProductAndAmount(arrayWhereSearchProductObject, fraseChoice, fras
 		let quantity = getProductQuantity(fraseQuantity, productObject, canReceiveNegativeAmount);
 
 		if(checkStock(productObject, modulo(quantity))) {
-			updateCartAndStore(productObject, quantity);
+			moveProductQtyFromCartToStore(productObject, quantity);
 		}
 	}
 }
@@ -208,7 +250,7 @@ function getOrder() {
 		}
 
 		for(let i = 0; i < cart.length; i++) {
-			updateCartAndStore(cart[i], -cart[i]['stock'])
+			moveProductQtyFromCartToStore(cart[i], -cart[i]['stock'])
 		}
 	}
 	defineProductAndAmount(store, FRASE_COMPRA_PRODUCTO, FRASE_COMPRA_CANTIDAD, store.concat({
@@ -222,16 +264,11 @@ function modifyOrder() {
 		alert('Usted no tiene ninguna orden para modificar.');
 		return
 	}
-	// debugger
+	
 	defineProductAndAmount(cart, FRASE_MODIFICAR_PRODUCTO, FRASE_MODIFICAR_CANTIDAD, cart.concat({
 		name: 'Volver al menú principal',
 		input: '0'
 	}), true);
-}
-
-function showStoreStock() {
-	console.log('Lo que queda en la tienda:');
-	console.table(store);
 }
 
 function showCart() {
