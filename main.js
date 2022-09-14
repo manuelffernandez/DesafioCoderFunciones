@@ -1,4 +1,3 @@
-// Corregir Modificar y Comprar
 //Crear clase para los objetos de store
 
 
@@ -98,6 +97,8 @@ let cart = [];
 
 
 
+
+
 //===============================================//
 //============== FUNCIONES SIMPLES ==============//
 //===============================================//
@@ -177,13 +178,6 @@ function getUserChoice(frase, menuArray) {
 	}
 }
 
-
-
-//=================================================//
-//============== FUNCIONES COMPLEJAS ==============//
-//=================================================//
-
-
 //Solicita un numero al usuario para operar con el producto previamente elegido.
 //canReturnNegativeAmount dato booleano que permite el ingreso de valores negativos.
 //true: permite valores negativos & false: no permite valores negativos. Valor por defecto: false
@@ -205,6 +199,16 @@ function getProductQuantity(frase, productObjectToDisplay, canReturnNegativeAmou
 	}
 }
 
+
+
+
+
+
+
+//=================================================//
+//============== FUNCIONES COMPLEJAS ==============//
+//=================================================//
+
 //Mueve una cantidad especificada del store al carrito.
 //Suma quantity al la propiedad 'stock' del producto en cart y la resta en 'stock' del mismo producto en store
 //Para lograr la operacion inversa, es decir del carrito al store simplemente se ingresa un quantity negativo
@@ -223,15 +227,15 @@ function moveProductQtyFromCartToStore(productObjectToSearchInCart, quantity) {
 	cleanCart();
 }
 
-function defineProductAndAmount(arrayWhereSearchProductObject, fraseChoice, fraseQuantity, arrayToShowAvailableProducts, canReceiveNegativeAmount) {
+function defineProductAndAmount(arrayWhereSearch, fraseChoice, fraseQuantity, menuArray, canReceiveNegativeAmount) {
 	while(true) {
-		let chosenOption = getUserChoice(fraseChoice, arrayToShowAvailableProducts);
+		let chosenOption = getUserChoice(fraseChoice, menuArray);
 
 		if(chosenOption == '0') {
 			return
 		}
 
-		let productObject = findProductIn(arrayWhereSearchProductObject, chosenOption); 
+		let productObject = findProductIn(arrayWhereSearch, chosenOption); 
 		console.log(productObject);
 		let quantity = getProductQuantity(fraseQuantity, productObject, canReceiveNegativeAmount);
 
