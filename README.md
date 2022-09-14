@@ -7,7 +7,7 @@ The objective is to start with a simple project topic, and improve it while I´m
 <sub>Because I love it :sweat_smile:</sub>
 
 
-The idea is making a **super simply** E-commerce, but this time i can use more things. These things are: functions and high-order functions, objects, methods and arrays. So, you cand read the code if you interested on how I implemented them.
+The idea is making a **super simple** E-commerce, but this time i can use more things. These things are: functions and high-order functions, objects, methods and arrays. So, you cand read the code if you interested on how I implemented them.
 
 #### A little disclaimer...
 Since we dont saw the DOM lesson yet, the interact with the user it's very bounded. I can only use three functions to interact:
@@ -17,7 +17,7 @@ Since we dont saw the DOM lesson yet, the interact with the user it's very bound
 
 
 ## The highlight :star:
-I think that the most important thing in this project is the logic before the **cart** and **menu** arrays. It tooks me several hours to debugg the algorithms, and the worst/best thing is... the project is not ready yet. But once I finish with it, I think the result it's gonna be amazing. So...
+I think that the most important thing in this project is the logic behind the **cart** and **menu** arrays. It tooks me several hours to debugg the algorithms, and the worst/best thing is... the project is not ready yet. But once I finish with it, I think the result it's gonna be amazing. So...
 
 #### *IF YOU READ THIS MESSAGE THE PROJECT IT'S NOT DONE YET* 
 
