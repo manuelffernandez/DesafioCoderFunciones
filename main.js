@@ -80,7 +80,7 @@ let productsMenu = store.map(element => {
 	input: '0'
 });
 
-let eraseCartMenu = [
+let overlapOrderMenu = [
 	{
 		name: 'Hacer un pedido nuevo',
 		input: '1'
@@ -289,12 +289,12 @@ function showCart() {
 }
 
 function showOrder() {
-	alert('Chequee la consola porfavor');
 	console.log('-'.repeat(70));
 
 	showCart();
 
 	console.log('-'.repeat(70));
+	alert('Chequee la consola porfavor');
 }
 
 function endProgram() {
