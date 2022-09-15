@@ -217,7 +217,8 @@ function moveProductQtyFromCartToStore(productObjectToSearchInCart, quantity) {
 	let storeObject = findProductIn(store, productObjectToSearchInCart.input);
 
 	if(cartObject === undefined) {
-		createProductInCart(cartObject);
+		createProductInCart(productObjectToSearchInCart);
+		cartObject = findProductIn(cart, productObjectToSearchInCart.input);
 		cartObject.stock += quantity;
 		storeObject.stock -= quantity;
 	} else {
@@ -236,7 +237,6 @@ function defineProductAndAmount(arrayWhereSearch, fraseChoice, fraseQuantity, me
 		}
 
 		let productObject = findProductIn(arrayWhereSearch, chosenOption); 
-		console.log(productObject);
 		let quantity = getProductQuantity(fraseQuantity, productObject, canReceiveNegativeAmount);
 
 		if(checkStock(productObject, modulo(quantity))) {
