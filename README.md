@@ -19,13 +19,29 @@ Since we dont saw the DOM lesson yet, the interact with the user it's very bound
 ## The highlight :star:
 I think that the most important thing in this project is the logic behind the **cart** and **menu** arrays. It tooks me several hours to debugg the algorithms, and the worst/best thing is... the project is not ready yet. But once I finish with it, I think the result it's gonna be amazing. So...
 
-#### *IF YOU READ THIS MESSAGE THE PROJECT IT'S NOT DONE YET* 
+#### ~~*IF YOU READ THIS MESSAGE THE PROJECT IT'S NOT DONE YET*~~
+#### *THE PROJECT IS FINISHED :smiling_face_with_tear:*
 
 On the other hand, the improvments I make will be updated in this :page_facing_up: README file in chronological order (the latest first and the oldest last)
 
 ### So don't hesitate to read it :arrow_down: :arrow_down: :arrow_down:
 ## Chronoligcal improvments list :clipboard:
 ### Latest
+*14 of September 2022*
+
+**a)** Function `modifyOrder()` were added. 
+This function allows to change the amount of products in the order, by providing the products that you already has in the cart and letting input negative numbers in the `prompt()`. In case the order doesn't exists (you dont have any product in your cart), the program `alert()`s the user that he cannot modify an unexisting order.
+
+**b)** Code reorganization.
+The functios were separated with comentaries and empty lines of code into two groups depending on their "complexity", named as ***simple functions*** and ***complex functions***. The simples are the ones that not implements other functions declared by me within their blocks. Complex the ones that have one or more inside of their block code.
+
+**c)** Names improvements. 
+Changed a lot of functions and variables names to better understand its functionalities
+
+**c)** Hotifixes.
+Debugging proces. References and types error were corrected.
+
+### Changes 3
 *12 of September 2022*
 
 **a)** The old menu system, which worked with a "switch" statement, was improved for a more scalable array/object based system. The functions related with the "switch menu system" were also updated to work correctly.
@@ -51,3 +67,6 @@ The idea is create a function called `menu()` that works with a *switch* stateme
 
 **b)** Create a cart object.
 This object was created by the following structure [key, value] = [number, object]. Namely, the objects that correspond with the property values of the {*`cart`*} object, represents the products of the store. These objects also has properties (name, price and quantity) which are used to save the order and calculate the total.
+
+## Link to my institute
+#### :arrow_right: :arrow_right: https://www.coderhouse.com/ :arrow_left: :arrow_left:
