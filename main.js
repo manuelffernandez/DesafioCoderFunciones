@@ -247,7 +247,7 @@ function defineProductAndAmount(arrayWhereSearch, fraseChoice, fraseQuantity, me
 
 function getOrder() {
 	if(cart.length !== 0) {
-		let desicion = getUserChoice(FRASE_SOLAPAMIENTO_PEDIDO, eraseCartMenu);
+		let desicion = getUserChoice(FRASE_SOLAPAMIENTO_PEDIDO, overlapOrderMenu);
 
 		if(desicion == '2') {
 			return
