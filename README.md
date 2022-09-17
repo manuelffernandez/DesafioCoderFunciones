@@ -19,8 +19,7 @@ Since we dont saw the DOM lesson yet, the interact with the user it's very bound
 ## The highlight :star:
 I think that the most important thing in this project is the logic behind the **cart** and **menu** arrays. It tooks me several hours to debugg the algorithms, and the worst/best thing is... the project is not ready yet. But once I finish with it, I think the result it's gonna be amazing. So...
 
-#### ~~*IF YOU READ THIS MESSAGE THE PROJECT IT'S NOT DONE YET*~~
-#### *THE PROJECT IS FINISHED :smiling_face_with_tear:*
+#### *IF YOU READ THIS MESSAGE THE PROJECT IT'S NOT DONE YET*
 
 On the other hand, the improvments I make will be updated in this :page_facing_up: README file in chronological order (the latest first and the oldest last)
 
