@@ -3,6 +3,8 @@
 
 /*'Paytone One'*/
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+/*'Karla'*/
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400&display=swap');
 
 :root {
   --color-white: #f2f2da;
@@ -11,6 +13,18 @@
 
 .paytoneone {
 	font-family: 'Paytone One', sans-serif;
+}
+
+.karla {
+	font-family: 'Karla', sans-serif;	
+}
+
+.font__400 {
+	font-weight: 400;
+}
+
+.font__300 {
+	font-weight: 300;
 }
 
 .font__white {
@@ -22,7 +36,7 @@
 }
 
 .logo {
-	height: 3.5rem; /* 60/16 */
+	height: 3rem; /* 60/16 */
 }
 
 .bgCont {
@@ -41,5 +55,19 @@
 	background-position: center;
 	background-size: cover;
 	opacity: 0.8;
-	background-image: url(./assets/bg_img/coffe_beans.jpg);
+	background-image: url(./assets/img/bg_img/coffe_beans.jpg);
+}
+
+.button__cart {
+	border-style: none;
+	background-color: var(--color-green);
+	color: var(--color-white);
+}
+
+.button__delete {
+	border-style: none;
+}
+
+.cartList__img {
+	width: 10rem;
 }

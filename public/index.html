@@ -3,7 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+
+	<link rel="stylesheet" type="text/css" href="../src/style.css">
+	<link rel="shortcut icon" href="./favicon.ico">
+	<script type="text/javascript" src="../src/displayCart.js" defer></script>
 	<!-- <script type="text/javascript" src="./main.js"></script> -->
 	
 	<!-- Bootstrap -->
@@ -19,7 +22,7 @@
 		<nav class="navbar navbar-expand-lg bg-dark paytoneone text-white">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
-					<img src="./assets/logo.png" class="logo" alt="logo">
+					<img src="../src/assets/img/icons/logo.png" class="logo" alt="logo">
 				</a>
 			</div>
 		</nav>
@@ -31,7 +34,7 @@
 					<div class="bgCont__mainImg">
 					</div>
 					<h1 class="position-absolute p-5 display-1 text-uppercase font__white paytoneone">
-						Coffe only<span class="font__green">.</span><br>
+						Coffee only<span class="font__green">.</span><br>
 						<span class="font__green">Delicious</span><span class="font__white">,</span><br>
 						<span class="font__green">for you</span>
 					</h1>
@@ -42,14 +45,23 @@
 			<div class="container mt-2 d-flex justify-content-center">
 				<h2 class="display-5 text-dark text-uppercase paytoneone">Nuestros productos</h2>
 			</div>
-			<div class="container" id="shop">
-				
+			<div class="container-fluid">
+				<div id="shop" class="row p-4 g-4">
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="container-fluid">
+				<div class="container mt-2 d-flex justify-content-center">
+					<h2 class="display-5 text-dark text-uppercase paytoneone">Tu carrito</h2>
+				</div>
+				<div id="cartList" class="row">
+				</div>
 			</div>
 		</section>
 	</main>
 
 
-	<main>
 	<!-- Bootstrap js & Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>

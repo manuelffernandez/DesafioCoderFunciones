@@ -97,7 +97,7 @@ let overlapOrderMenu = [
 
 let cart = [];
 
-let shop = document.getElementById('shop');
+// let shop = document.getElementById('shop');
 
 
 
@@ -106,31 +106,31 @@ let shop = document.getElementById('shop');
 //============== DOM ==============//
 //=================================//
 
-function generateShop() {
-	shop.innerHTML = sotre.map(function(x) {
-		return `
-		<div class="col-12 col-sm-6 col-lg-3">
-			<div class="card">
-				<img class="card-img-top img-fluid" src="${x.img}">
-				<div class="card-body">
-					<p class="card-title h5">${x.name}</p>
-					<p class="card-text">${x.desc}</p>
-				</div>
-				<div class="card-footer d-flex justify-content-between align-items-center">
-					<p class="h5 fw-semibold m-0">$${x.price}</p>
-					<div class="prodOperator d-flex justify-content-between align-items-center">
-						<i onclick="decrementQty(${x.id})" class="fa-solid fa-minus btn btn-danger"></i>
-						<p id="qty-of-${x.id}" class="prodOperator__quantity m-0 px-3 h4">0</p>
-						<i onclick="incrementQty(${x.id})" class="fa-solid fa-plus btn btn-success"></i>
-					</div>
-				</div>
-			</div>
-		</div>
-		`
-	}).join("");
-}
+// function generateShop() {
+// 	shop.innerHTML = sotre.map(function(x) {
+// 		return `
+// 		<div class="col-12 col-sm-6 col-lg-3">
+// 			<div class="card">
+// 				<img class="card-img-top img-fluid" src="${x.img}">
+// 				<div class="card-body">
+// 					<p class="card-title h5">${x.name}</p>
+// 					<p class="card-text">${x.desc}</p>
+// 				</div>
+// 				<div class="card-footer d-flex justify-content-between align-items-center">
+// 					<p class="h5 fw-semibold m-0">$${x.price}</p>
+// 					<div class="prodOperator d-flex justify-content-between align-items-center">
+// 						<i onclick="decrementQty(${x.id})" class="fa-solid fa-minus btn btn-danger"></i>
+// 						<p id="qty-of-${x.id}" class="prodOperator__quantity m-0 px-3 h4">0</p>
+// 						<i onclick="incrementQty(${x.id})" class="fa-solid fa-plus btn btn-success"></i>
+// 					</div>
+// 				</div>
+// 			</div>
+// 		</div>
+// 		`
+// 	}).join("");
+// }
 
-generateShop();
+// generateShop();
 
 
 
