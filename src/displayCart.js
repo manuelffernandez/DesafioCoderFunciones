@@ -75,23 +75,23 @@ function generateShop() {
 function generateCart() {
 	for(let product of cart) {
 		let row = document.createElement('div');
-		row.className = 'container col-12 mb-3 py-2 d-flex justify-content-between border';
-		row.innerHTML = `<div class="d-flex col-3">
-							<img src="${product.img}" class="img-fluid cartList__img">
-							<div class="d-flex flex-column justify-content-around">
+		row.className = 'container row mx-auto mb-3 py-2 border';
+		row.innerHTML = `<div class="d-flex col-6 offset-3 flex-column align-items-center col-lg-4 offset-lg-0 flex-lg-row justify-content-lg-start">
+							<img src="${product.img}" class="img-fluid w-auto">
+							<div class="d-flex flex-row flex-lg-column">
 								<p class="ms-2 mb-0 h4 paytoneone">${product.name}</p>
 								<p class="ms-2 mb-0 h4 karla font__400">$${product.price}</p>
 							</div>
 						</div>
-						<div class="col-1 offset-3 py-2 border border-dark my-auto d-flex justify-content-evenly">
-								<p class="m-0 h4 karla font__400">-</p>
+						<div class="col-4 offset-4 col-lg-1 my-3 p-2 offset-lg-3 my-lg-auto d-flex justify-content-evenly align-items-center border border-dark">
+								<button id="increment_btn_${product.input}" class="m-0 h4 bg-transparent border-0 karla font__400">-</button>
 								<p class="m-0 h4 karla font__400">${product.stock}</p>
-								<p class="m-0 h4 karla font__300">+</p>					
+								<button id="decrement_btn_${product.input}" class="m-0 h4 bg-transparent border-0 karla font__300">+</button>					
 						</div>
-						<div class="col-2 m-auto d-flex justify-content-end">
-							<p class="ms-2 mb-0 h4 karla font__400">$175</p>
+						<div class="col-lg-2 m-auto d-flex justify-content-center justify-content-lg-start">
+							<p class="ms-2 mb-3 h4 karla font__400">$175</p>
 						</div>
-						<div class="col-1 d-flex m-auto justify-content-center">
+						<div class="col-lg-1 m-auto d-flex justify-content-center">
 							<button class="p-3 border border-danger text-danger text-uppercase karla bg-transparent">Eliminar</button>
 						</div>`;
 		cartList.appendChild(row);
