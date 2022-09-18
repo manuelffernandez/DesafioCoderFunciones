@@ -20,25 +20,29 @@ let store = [
 		name: 'Café',
 		price: 30,
 		stock: 10,
-		input: '1'
+		input: '1',
+		img:''
 	},
 	{
 		name: 'Jugo',
 		price: 25,
 		stock: 10,
-		input: '2'
+		input: '2',
+		img:''
 	},
 	{
 		name: 'Medialuna',
 		price: 15,
 		stock: 10,
-		input: '3'
+		input: '3',
+		img:''
 	},
 	{
 		name: 'Sandwich',
 		price: 35,
 		stock: 10,
-		input: '4'
+		input: '4',
+		img:''
 	}
 ];
 
@@ -93,6 +97,7 @@ let overlapOrderMenu = [
 
 let cart = [];
 
+let shop = document.getElementById('shop');
 
 
 
@@ -101,7 +106,31 @@ let cart = [];
 //============== DOM ==============//
 //=================================//
 
+function generateShop() {
+	shop.innerHTML = sotre.map(function(x) {
+		return `
+		<div class="col-12 col-sm-6 col-lg-3">
+			<div class="card">
+				<img class="card-img-top img-fluid" src="${x.img}">
+				<div class="card-body">
+					<p class="card-title h5">${x.name}</p>
+					<p class="card-text">${x.desc}</p>
+				</div>
+				<div class="card-footer d-flex justify-content-between align-items-center">
+					<p class="h5 fw-semibold m-0">$${x.price}</p>
+					<div class="prodOperator d-flex justify-content-between align-items-center">
+						<i onclick="decrementQty(${x.id})" class="fa-solid fa-minus btn btn-danger"></i>
+						<p id="qty-of-${x.id}" class="prodOperator__quantity m-0 px-3 h4">0</p>
+						<i onclick="incrementQty(${x.id})" class="fa-solid fa-plus btn btn-success"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		`
+	}).join("");
+}
 
+generateShop();
 
 
 
